@@ -21,3 +21,18 @@ export const fetchSingleChampions = (champion_name) => {
    console.log(err);
   });
 };
+
+export const abilityStringCorrector = (string, statsObject) => {
+ let newString = string
+  .replaceAll(
+   "<physicalDamage>{{ basedamage }} physical damage</physicalDamage>",
+   statsObject.attackdamage + " damage (+ " + statsObject.attackdamageperlevel + " damage per level)"
+  )
+  .replaceAll("<br /><br />", "")
+  .replaceAll("<br />", "")
+  .replaceAll(
+   "<attackSpeed>Attack Speed</attackSpeed>",
+   statsObject.attackspeed + " attack speed (+" + statsObject.attackspeedperlevel + " attack speed per level"
+  );
+ return newString;
+};

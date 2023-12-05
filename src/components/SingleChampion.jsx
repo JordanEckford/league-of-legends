@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchSingleChampions } from "../../utils";
+import { abilityStringCorrector, fetchSingleChampions } from "../../utils";
 import LoadingIcons from "react-loading-icons";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -23,7 +23,9 @@ export const SingleChampion = () => {
     <LoadingIcons.BallTriangle stroke="#000000" />
    </div>
   );
- console.log(singleChamp.data[champion_name].info);
+ const statsObject = singleChamp.data[champion_name].stats;
+ console.log(singleChamp);
+ console.log(statsObject);
  return (
   <>
    <div className="back-to-champs">
@@ -36,8 +38,8 @@ export const SingleChampion = () => {
     <Carousel autoPlay showThumbs={false} width={"100%"} infiniteLoop={true} transitionTime={300} interval={9000}>
      {singleChamp.data[champion_name].skins.map((skin) => {
       return (
-       <div>
-        <img className="skin-image" key={skin.num} src={`https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champion_name}_${skin.num}.jpg`} />
+       <div key={skin.num}>
+        <img className="skin-image" src={`https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champion_name}_${skin.num}.jpg`} />
         <p className="legend">{skin.name}</p>
        </div>
       );
@@ -49,7 +51,7 @@ export const SingleChampion = () => {
    <div className="class-stats">
     <div className="type-imgs">
      {singleChamp.data[champion_name].tags.map((type) => {
-      return <img src={`/classes/${type}.png`} />;
+      return <img key={type} src={`/classes/${type}.png`} />;
      })}
     </div>
     <div className="stats-container">
@@ -74,6 +76,27 @@ export const SingleChampion = () => {
       </div>
      </div>
     </div>
+   </div>
+   <div className="champ-spells">
+    <div className="single-spell">
+     <img className="spell-img" src={`https://ddragon.leagueoflegends.com/cdn/13.23.1/img/passive/${singleChamp.data[champion_name].passive.image.full}`} />
+     <p>{singleChamp.data[champion_name].passive.name}</p>
+     <p>{singleChamp.data[champion_name].passive.description}</p>
+    </div>
+    {singleChamp.data[champion_name].spells.map((spell) => {
+     return (
+      <>
+       <div key={spell.name} className="single-spell">
+        <img className="spell-img" src={`https://ddragon.leagueoflegends.com/cdn/13.23.1/img/spell/${spell.image.full}`} />
+        <p>{spell.name}</p>
+        <p>
+         {spell.description} <br />
+         {abilityStringCorrector(spell.tooltip, statsObject)}
+        </p>
+       </div>
+      </>
+     );
+    })}
    </div>
   </>
  );

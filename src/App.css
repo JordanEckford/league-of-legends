@@ -180,7 +180,8 @@ a {
  color: rgb(0, 0, 0);
 }
 .single-champ-lore {
- margin-top: 0;
+ margin: 0 auto 10px;
+ width: 90%;
 }
 .stats-container {
  width: 100%;
@@ -224,6 +225,22 @@ a {
  display: flex;
  flex-direction: row;
  justify-content: space-around;
+ width: 90%;
+}
+.champ-spells {
+ margin: 40px auto;
+ width: 80%;
+ display: flex;
+ flex-direction: row;
+ justify-content: space-between;
+}
+.single-spell {
+ box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px,
+  rgba(0, 0, 0, 0.07) 0px 16px 16px;
+ width: 150px;
+}
+.spell-img {
+ width: 100px;
 }
 
 @media only screen and (max-width: 1200px) {
