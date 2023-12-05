@@ -8,6 +8,7 @@ import { Route, Routes } from "react-router-dom";
 import { SingleChampion } from "./components/SingleChampion";
 import { useState, useEffect } from "react";
 import { fetchAllChampions } from "../utils";
+import { SideBar } from "./components/Sidebar";
 
 function App() {
  const [championObject, setChampionObject] = useState(null);
@@ -30,6 +31,7 @@ function App() {
  return (
   <>
    <Header />
+   <SideBar />
    <Navbar />
    <Routes>
     <Route path="/" element={<Home />} />

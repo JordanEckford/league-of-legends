@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export const Champions = ({ champions }) => {
  return (
-  <div>
+  <div className="champions">
    <h2>Champions</h2>
    <ul className="champ-list">
     {champions.map((champion) => {

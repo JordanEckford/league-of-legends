@@ -12,6 +12,27 @@
 html {
  max-width: 99vw;
 }
+.sidebar {
+ display: none;
+}
+button {
+ background-color: black;
+ color: white;
+ padding: 5px;
+ border-radius: 5px;
+ position: relative;
+ bottom: 50px;
+}
+button:hover {
+ background-color: white;
+ color: black;
+}
+a {
+ text-decoration: none;
+}
+a:visited {
+ color: inherit;
+}
 h1 {
  margin: 0 auto;
 }
@@ -25,7 +46,7 @@ div {
 }
 .divider {
  width: 50%;
- margin: 0 auto;
+ margin: 10px auto;
  padding: 0;
  border-bottom: solid black 1px;
 }
@@ -81,6 +102,20 @@ a {
  justify-content: space-between;
  width: 90%;
  margin: 0 auto;
+ animation-name: slide-up;
+ transition: 0.5s ease-in-out;
+ animation-duration: 1s;
+}
+
+@keyframes slide-up {
+ from {
+  translate: 0px 150px;
+  opacity: 0;
+ }
+ to {
+  translate: 0 0;
+  opacity: 100;
+ }
 }
 .champ-card {
  margin: 10px 20px;
@@ -89,6 +124,8 @@ a {
  height: 200px;
  filter: grayscale(0);
  transition: 0.5s ease-in-out;
+ box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px,
+  rgba(0, 0, 0, 0.07) 0px 16px 16px;
 }
 .champ-card:hover .champ-img {
  filter: grayscale(1) brightness(0.4);
@@ -98,7 +135,6 @@ a {
  opacity: 100;
  transition: 0.5s ease-in-out;
 }
-
 .champ-name {
  position: absolute;
  width: 200px;
@@ -108,6 +144,7 @@ a {
  z-index: 5;
  background-color: rgba(0, 0, 0, 0.562);
 }
+
 .champ-img {
  width: 100%;
  height: 200px;
@@ -126,32 +163,214 @@ a {
 }
 .carousel-container {
  width: 1000px;
- margin: 0 auto;
+ margin: -10px auto;
 }
 .skin-image-container {
  width: 100%;
  margin: 0 auto;
 }
-/* 
-.skin-name {
- position: relative;
- bottom: 375px;
- width: 100%;
- height: 100%;
- margin: 0;
- padding: 0;
- text-align: center;
- color: white;
+.back-to-champs {
+ margin: -30px auto 0 0;
+ display: flex;
+ align-items: flex-start;
+}
+.single-champ-name {
  font-size: 50px;
- opacity: 0;
- transition: 0.5s ease-in-out;
- z-index: 5;
+ margin: 10px auto;
+ color: rgb(0, 0, 0);
 }
-.skin-image-container:hover .skin-name {
- opacity: 100;
- transition: 0.5s ease-in-out;
+.single-champ-lore {
+ margin-top: 0;
 }
-.skin-image-container:hover {
- filter: brightness(0.8);
- transition: 0.5s ease-in-out;
-} */
+.stats-container {
+ width: 100%;
+ margin: 0 auto;
+ display: flex;
+ flex-direction: column;
+ justify-content: space-between;
+}
+
+.attack-border,
+.defense-border,
+.magic-border,
+.difficulty-border {
+ border: black solid 1px;
+}
+.red,
+.blue,
+.purple,
+.grey {
+ text-align: left;
+ line-height: 24px;
+ color: rgb(0, 0, 0);
+}
+.red {
+ height: 24px;
+ background-color: rgb(252, 61, 36);
+}
+.blue {
+ height: 24px;
+ background-color: #08d7f7;
+}
+.purple {
+ height: 24px;
+ background-color: rgb(190, 90, 190);
+}
+.grey {
+ height: 24px;
+ background-color: rgb(5, 202, 5);
+}
+.class-stats {
+ display: flex;
+ flex-direction: row;
+ justify-content: space-around;
+}
+
+@media only screen and (max-width: 1200px) {
+ .navbar {
+  display: none;
+ }
+ #root {
+  font-family: "Roboto", sans-serif;
+  color: grey;
+  margin: 0 0px 0 0;
+  padding: 0;
+  text-align: center;
+  width: 100vw;
+ }
+ .logo-header {
+  height: 70px;
+ }
+ .sidebar {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+ }
+ .sidebar-menu {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 5;
+  animation-name: slide;
+  animation-duration: 0.5s;
+ }
+ .side-menu-show {
+  animation-name: slidein;
+  animation-duration: 0.5s;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 5;
+ }
+ .side-menu-hidden {
+  translate: -100% 0;
+  animation-name: slideout;
+  animation-duration: 0.5s;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 5;
+ }
+
+ @keyframes slidein {
+  from {
+   translate: -100% 0;
+   opacity: 0;
+  }
+  to {
+   translate: 0 0;
+   opacity: 100;
+  }
+ }
+ @keyframes slideout {
+  from {
+   translate: 0 0;
+   opacity: 100;
+  }
+  to {
+   translate: -100% 0;
+   opacity: 0;
+  }
+ }
+ .hamburger-react {
+  z-index: 6;
+ }
+ .champ-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none;
+  justify-content: space-around;
+  width: 90%;
+  margin: 0 auto;
+  padding: 0;
+  animation-name: slide-up;
+  transition: 0.5s ease-in-out;
+  animation-duration: 1s;
+ }
+ .champ-card {
+  margin: 10px 10px;
+  border: solid black 1px;
+  width: 100px;
+  height: 100px;
+  filter: grayscale(0);
+  transition: 0.5s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px,
+   rgba(0, 0, 0, 0.07) 0px 16px 16px;
+ }
+ .champ-title {
+  display: none;
+ }
+ .champ-name {
+  position: absolute;
+  width: 100px;
+  margin: 0 auto;
+  padding: 0;
+  color: white;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.562);
+ }
+ .champ-img {
+  width: 100%;
+  height: 100px;
+  transition: 0.5s ease-in-out;
+ }
+ .carousel-container {
+  width: 95vw;
+  margin: 30px 0;
+ }
+ .single-champ-lore {
+  width: 95vw;
+ }
+ button {
+  display: none;
+ }
+ .class-stats {
+  display: flex;
+  flex-direction: column;
+ }
+ .stats-container {
+  width: 80%;
+ }
+ .attack-border,
+ .defense-border,
+ .magic-border,
+ .difficulty-border {
+  margin: 2px auto;
+ }
+}
