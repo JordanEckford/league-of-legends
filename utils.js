@@ -33,6 +33,7 @@ export const abilityStringCorrector = (string, statsObject) => {
   .replaceAll(
    "<attackSpeed>Attack Speed</attackSpeed>",
    statsObject.attackspeed + " attack speed (+" + statsObject.attackspeedperlevel + " attack speed per level"
-  );
+  )
+  .replaceAll("<magicDamage>{{ damage }} magic damage</magicDamage>", statsObject.mp + "magic");
  return newString;
 };

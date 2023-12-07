@@ -35,7 +35,7 @@ function App() {
    <Navbar />
    <Routes>
     <Route path="/" element={<Home />} />
-    <Route path="/champions" element={<Champions champions={champions} />} />
+    <Route path="/champions" element={<Champions champions={champions} setChampions={setChampions} />} />
     <Route path="/items" element={<Items />} />
     <Route path="/champions/:champion_name" element={<SingleChampion champions={champions} />} />
    </Routes>

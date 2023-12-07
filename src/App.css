@@ -12,16 +12,26 @@
 html {
  max-width: 99vw;
 }
-.sidebar {
+button {
+ background-color: black;
+ color: white;
+ padding: 5px;
+ border-radius: 5px;
+ font-weight: 800;
+}
+.side-menu-hidden {
  display: none;
 }
-button {
+.back-to-champs {
  background-color: black;
  color: white;
  padding: 5px;
  border-radius: 5px;
  position: relative;
  bottom: 50px;
+}
+.hamburger-react {
+ display: none;
 }
 button:hover {
  background-color: white;
@@ -183,43 +193,24 @@ a {
  margin: 0 auto 10px;
  width: 90%;
 }
+.type-imgs {
+ width: 30%;
+}
 .stats-container {
  width: 100%;
  margin: 0 auto;
  display: flex;
- flex-direction: column;
+ flex-direction: row;
+ flex-wrap: wrap;
  justify-content: space-between;
 }
-
-.attack-border,
-.defense-border,
-.magic-border,
-.difficulty-border {
- border: black solid 1px;
-}
-.red,
-.blue,
-.purple,
-.grey {
- text-align: left;
- line-height: 24px;
- color: rgb(0, 0, 0);
-}
-.red {
- height: 24px;
- background-color: rgb(252, 61, 36);
-}
-.blue {
- height: 24px;
- background-color: #08d7f7;
-}
-.purple {
- height: 24px;
- background-color: rgb(190, 90, 190);
-}
-.grey {
- height: 24px;
- background-color: rgb(5, 202, 5);
+.attack-container,
+.defense-container,
+.magic-container,
+.difficulty-container {
+ display: flex;
+ flex-direction: column;
+ width: 160px;
 }
 .class-stats {
  display: flex;
@@ -240,7 +231,20 @@ a {
  width: 150px;
 }
 .spell-img {
+ height: 100px;
  width: 100px;
+}
+.single-spell-description {
+ width: 90%;
+ margin: 0 auto;
+ background-color: #ffffff;
+ color: #000000;
+ font-weight: 200;
+ font-size: 20;
+ border-radius: 10px;
+ padding: 10px;
+ border: solid 2px white;
+ box-shadow: 0 0 20px 1px #00000023;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -253,10 +257,16 @@ a {
   margin: 0 0px 0 0;
   padding: 0;
   text-align: center;
-  width: 100vw;
+  width: 95vw;
+ }
+ h2 {
+  margin-top: -30px;
  }
  .logo-header {
   height: 70px;
+ }
+ .sortby {
+  z-index: 1;
  }
  .sidebar {
   display: block;
@@ -268,13 +278,12 @@ a {
  }
  .sidebar-menu {
   display: block;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: black;
-  z-index: 5;
   animation-name: slide;
   animation-duration: 0.5s;
  }
@@ -282,11 +291,11 @@ a {
   animation-name: slidein;
   animation-duration: 0.5s;
   display: block;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: black;
   z-index: 5;
  }
@@ -299,7 +308,7 @@ a {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: black;
   z-index: 5;
  }
@@ -325,7 +334,10 @@ a {
   }
  }
  .hamburger-react {
+  display: block;
   z-index: 6;
+  position: fixed;
+  bottom: 80px;
  }
  .champ-list {
   display: flex;
@@ -372,22 +384,126 @@ a {
   margin: 30px 0;
  }
  .single-champ-lore {
-  width: 95vw;
+  width: 90vw;
  }
- button {
+ .back-to-champs {
   display: none;
  }
  .class-stats {
   display: flex;
   flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
  }
  .stats-container {
-  width: 80%;
+  width: 90%;
  }
- .attack-border,
- .defense-border,
- .magic-border,
- .difficulty-border {
-  margin: 2px auto;
+ .type-imgs {
+  width: 100%;
  }
+ .sortby-form {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin: 10px auto;
+ }
+ select {
+  margin: 10px auto;
+  width: 100%;
+  font-size: 22px;
+  text-align: center;
+  border-radius: 5px;
+  background-color: white;
+ }
+ .champ-spells {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  min-width: 300px;
+ }
+ .spell-name {
+  align-self: flex-start;
+  width: 100%;
+  font-size: 16px;
+ }
+ .single-spell {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  column-gap: 20px;
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 5px;
+ }
+ .spell-img {
+  height: 100px;
+  width: 100px;
+ }
+ h4 {
+  color: rgb(105, 105, 105);
+  font-size: 28px;
+  margin: 0;
+  padding: 0;
+ }
+}
+
+/* 
+PIE CHART 
+*/
+@property --p {
+ syntax: "<number>";
+ inherits: true;
+ initial-value: 0;
+}
+
+.pie {
+ --p: 20;
+ --b: 22px;
+ --c: darkred;
+ --w: 150px;
+
+ width: var(--w);
+ aspect-ratio: 1;
+ position: relative;
+ display: inline-grid;
+ margin: 5px;
+ place-content: center;
+ font-size: 25px;
+ font-weight: bold;
+ font-family: sans-serif;
+}
+.pie:before,
+.pie:after {
+ content: "";
+ position: absolute;
+ border-radius: 50%;
+}
+.pie:before {
+ inset: 0;
+ background: radial-gradient(farthest-side, var(--c) 98%, #0000) top/var(--b) var(--b) no-repeat, conic-gradient(var(--c) calc(var(--p) * 1%), #0000 0);
+ -webkit-mask: radial-gradient(farthest-side, #0000 calc(99% - var(--b)), #000 calc(100% - var(--b)));
+ mask: radial-gradient(farthest-side, #0000 calc(99% - var(--b)), #000 calc(100% - var(--b)));
+}
+.pie:after {
+ inset: calc(50% - var(--b) / 2);
+ background: var(--c);
+ transform: rotate(calc(var(--p) * 3.6deg)) translateY(calc(50% - var(--w) / 2));
+}
+.animate {
+ animation: p 1s 0.5s both;
+}
+.no-round:before {
+ background-size: 0 0, auto;
+}
+.no-round:after {
+ content: none;
+}
+@keyframes p {
+ from {
+  --p: 0;
+ }
+}
+
+body {
+ background: #f2f2f2;
 }
