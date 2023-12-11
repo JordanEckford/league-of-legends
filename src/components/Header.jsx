@@ -1,8 +1,7 @@
 export const Header = () => {
  return (
-  <div>
-   <img className="logo-header" src="./lol-black-white-full.png" alt="" />
-   <div className="divider"></div>
+  <div className="header-container">
+   <img className="logo-header" src="/lol-logo.png" alt="" />
   </div>
  );
 };

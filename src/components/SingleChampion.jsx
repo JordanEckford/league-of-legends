@@ -1,6 +1,6 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { abilityStringCorrector, fetchSingleChampions } from "../../utils";
+import { fetchSingleChampions } from "../../utils";
 import LoadingIcons from "react-loading-icons";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -29,7 +29,6 @@ export const SingleChampion = () => {
   let spells = [];
   let tooltips = [];
   spells.push(singleChamp.data[champion_name].passive.description);
-  console.log(singleChamp);
   singleChamp.data[champion_name].spells.forEach((spell) => {
    spells.push(spell.description);
    tooltips.push(spell.tooltip);
@@ -54,7 +53,7 @@ export const SingleChampion = () => {
    <div className="class-stats">
     <div className="type-imgs">
      {singleChamp.data[champion_name].tags.map((type) => {
-      return <img key={type} src={`/classes/${type}.png`} />;
+      return <img className="type-img" key={type} src={`/classes/${type}.png`} />;
      })}
     </div>
     <ChampStats singleChamp={singleChamp} champion_name={champion_name} />

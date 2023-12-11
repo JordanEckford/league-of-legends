@@ -1,16 +1,41 @@
+@font-face {
+ font-family: LOLtitles;
+ src: url(/fonts/LOLtitles.otf);
+}
+@font-face {
+ font-family: LOLnormal;
+ src: url(/fonts/LOLnormal.otf);
+}
+
 #root {
- font-family: "Roboto", sans-serif;
- color: grey;
- margin: 0 0px 0 100px;
+ font-family: "LOLtitles", "Roboto", sans-serif;
+ color: rgb(255, 255, 255);
  padding: 0;
  text-align: center;
- width: 90vw;
+ width: 100%;
 }
+
+@media only screen and (min-width: 1200px) {
+ /* #root {
+  padding: 0 100px 0 0;
+ } */
+}
+
 /* * {
  border: solid red 1px;
 } */
 html {
- max-width: 99vw;
+ padding: 0;
+ max-width: 100vw;
+}
+body {
+ background-image: url(/backgrounds/1.jpg);
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-attachment: fixed;
+ padding: 0;
+ width: 100%;
+ margin: 0;
 }
 button {
  background-color: black;
@@ -18,6 +43,13 @@ button {
  padding: 5px;
  border-radius: 5px;
  font-weight: 800;
+}
+.header-container {
+ background-color: rgb(8, 19, 53);
+ width: 100%;
+ padding: 0;
+ margin: 0;
+ height: 100px;
 }
 .side-menu-hidden {
  display: none;
@@ -46,9 +78,6 @@ a:visited {
 h1 {
  margin: 0 auto;
 }
-div {
- width: 100%;
-}
 .loader {
  width: 100%;
  height: 500px;
@@ -66,7 +95,8 @@ div {
  left: 0;
  height: 100%;
  width: 100px;
- background-color: black;
+ background-color: rgb(8, 19, 53);
+ color: #ddbf6d;
  transition: all 0.3s ease;
  z-index: 5;
 }
@@ -97,12 +127,35 @@ a {
  font-size: 25px;
 }
 .menu-logo {
- width: 60px;
+ height: 60px;
  margin: 0 auto;
 }
 
 .logo-header {
  height: 100px;
+}
+.home-screen {
+ background-color: rgba(255, 255, 255, 0.541);
+ color: black;
+ width: 60%;
+ margin: 50px auto;
+ padding: 20px;
+ border-radius: 20px;
+}
+.home-h2 {
+ font-size: 50px;
+}
+.home-h3 {
+ margin: 100px auto 50px;
+ font-size: 40px;
+}
+.home-message {
+ font-size: 25px;
+}
+.random-champ-button {
+ padding: 30px 60px;
+ background-color: rgb(8, 19, 53);
+ font-size: 25px;
 }
 .champ-list {
  display: flex;
@@ -173,7 +226,7 @@ a {
 }
 .carousel-container {
  width: 1000px;
- margin: -10px auto;
+ margin: 10px auto 0 auto;
 }
 .skin-image-container {
  width: 100%;
@@ -186,23 +239,42 @@ a {
 }
 .single-champ-name {
  font-size: 50px;
+ width: 60%;
+ padding: 10px;
+ border-radius: 10px;
  margin: 10px auto;
  color: rgb(0, 0, 0);
+ background-color: rgba(255, 255, 255, 0.274);
 }
 .single-champ-lore {
  margin: 0 auto 10px;
- width: 90%;
+ width: 60%;
+ color: #ddbf6d;
+ background-color: rgb(8, 19, 53);
+ border-radius: 10px;
+ padding: 10px;
+ font-size: 25px;
 }
 .type-imgs {
- width: 30%;
+ display: flex;
+ background-color: rgba(8, 19, 53, 0.384);
+ border-radius: 10px;
+ padding: 10px 0;
+}
+.type-img {
+ height: 120px;
+ margin: auto;
 }
 .stats-container {
- width: 100%;
- margin: 0 auto;
+ width: fit-content;
+ margin: 10px auto;
  display: flex;
  flex-direction: row;
  flex-wrap: wrap;
- justify-content: space-between;
+ justify-content: center;
+ background-color: rgba(8, 19, 53, 0.384);
+ border-radius: 10px;
+ padding: 10px 40px;
 }
 .attack-container,
 .defense-container,
@@ -215,8 +287,9 @@ a {
 .class-stats {
  display: flex;
  flex-direction: row;
- justify-content: space-around;
- width: 90%;
+ justify-content: space-between;
+ width: 50%;
+ margin: auto;
 }
 .champ-spells {
  margin: 40px auto;
@@ -229,6 +302,8 @@ a {
  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px,
   rgba(0, 0, 0, 0.07) 0px 16px 16px;
  width: 150px;
+ background-color: rgba(245, 245, 245, 0.527);
+ color: black;
 }
 .spell-img {
  height: 100px;
@@ -236,14 +311,13 @@ a {
 }
 .single-spell-description {
  width: 90%;
- margin: 0 auto;
- background-color: #ffffff;
+ margin: 0 auto 50px;
+ background-color: rgba(245, 245, 245, 0.527);
  color: #000000;
  font-weight: 200;
  font-size: 20;
  border-radius: 10px;
  padding: 10px;
- border: solid 2px white;
  box-shadow: 0 0 20px 1px #00000023;
 }
 
@@ -253,17 +327,17 @@ a {
  }
  #root {
   font-family: "Roboto", sans-serif;
-  color: grey;
+  color: rgb(255, 255, 255);
   margin: 0 0px 0 0;
   padding: 0;
   text-align: center;
-  width: 95vw;
+  width: 100%;
  }
  h2 {
   margin-top: -30px;
  }
  .logo-header {
-  height: 70px;
+  height: 100px;
  }
  .sortby {
   z-index: 1;
@@ -367,6 +441,7 @@ a {
  }
  .champ-name {
   position: absolute;
+  font-size: 15px;
   width: 100px;
   margin: 0 auto;
   padding: 0;
@@ -380,8 +455,8 @@ a {
   transition: 0.5s ease-in-out;
  }
  .carousel-container {
-  width: 95vw;
-  margin: 30px 0;
+  width: 100%;
+  margin: 0;
  }
  .single-champ-lore {
   width: 90vw;
@@ -502,8 +577,4 @@ PIE CHART
  from {
   --p: 0;
  }
-}
-
-body {
- background: #f2f2f2;
 }

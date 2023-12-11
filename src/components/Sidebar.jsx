@@ -6,7 +6,7 @@ export const SideBar = () => {
  const [isOpen, setIsOpen] = useState(false);
  return (
   <>
-   {isOpen ? <Hamburger color="#fff" toggled={isOpen} toggle={setIsOpen} /> : <Hamburger color="#000" toggled={isOpen} toggle={setIsOpen} />}
+   {isOpen ? <Hamburger color="#fff" toggled={isOpen} toggle={setIsOpen} /> : <Hamburger color="#ddbf6d" toggled={isOpen} toggle={setIsOpen} />}
    <div className={`side-menu-${isOpen ? "show" : "hidden"}`}>
     <div>
      <nav>
