@@ -51,7 +51,7 @@ export const SortBy = ({ setChampions }) => {
    >
     Hide Sort By
    </button>
-   <form className="sortby-form" action="" onSubmit={handleSubmit}>
+   <form className="sortby-form" onSubmit={handleSubmit}>
     <select
      onChange={(e) => {
       setSortBy(e.target.value);

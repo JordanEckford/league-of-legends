@@ -37,3 +37,14 @@ export const abilityStringCorrector = (string, statsObject) => {
   .replaceAll("<magicDamage>{{ damage }} magic damage</magicDamage>", statsObject.mp + "magic");
  return newString;
 };
+
+export const fetchAllItems = () => {
+ return axios
+  .get("https://ddragon.leagueoflegends.com/cdn/13.24.1/data/en_US/item.json")
+  .then((response) => {
+   return response.data.data;
+  })
+  .catch((err) => {
+   console.log(err);
+  });
+};
