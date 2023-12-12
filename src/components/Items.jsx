@@ -12,6 +12,10 @@ export const Items = ({ items, setItems }) => {
       <li className="item-card" key={item.key}>
        <h4 className="item-name">{item.name}</h4>
        <img className="item-img" src={`https://ddragon.leagueoflegends.com/cdn/13.24.1/img/item/${item.image.full}`} />
+       <div className="item-cost-container">
+        <img className="coin-icon" src="/coin.png" />
+        <p className="item-cost">{item.gold.base}</p>
+       </div>
       </li>
      );
     })}

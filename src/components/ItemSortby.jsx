@@ -79,7 +79,7 @@ export const ItemSortby = ({ setItems }) => {
   );
 
  return (
-  <>
+  <div className="sortby-content">
    <button
     onClick={() => {
      setShowOptions(!showOptions);
@@ -89,35 +89,45 @@ export const ItemSortby = ({ setItems }) => {
    </button>
    <h2 className="item-sortby-header">Item Sortby</h2>
    <form className="item-sort-form" onSubmit={handleSubmit}>
-    <label htmlFor="instore">Status:</label>
-    <select
-     className="item-sort"
-     id="instore"
-     onChange={(e) => {
-      setInStore(e.target.value);
-     }}
-    >
-     <option value={"All"}>All</option>
-     <option value={"true"}>Currently In Store</option>
-     <option value={"false"}>Not Currently In Store</option>
-    </select>
-    <label htmlFor="tag">Tag:</label>
-    <select
-     className="item-sort"
-     id="tag"
-     onChange={(e) => {
-      setFilterBy(e.target.value);
-     }}
-    >
-     <option>All</option>
-     {tags.map((tag) => {
-      return <option>{tag}</option>;
-     })}
-    </select>
-    <button className="item-sort-submit" type="submit">
-     Submit
-    </button>
+    <div className="sortby-section">
+     <label className="sortby-label" htmlFor="instore">
+      Status:
+     </label>
+     <select
+      className="item-sort"
+      id="instore"
+      onChange={(e) => {
+       setInStore(e.target.value);
+      }}
+     >
+      <option value={"All"}>All</option>
+      <option value={"true"}>Currently In Store</option>
+      <option value={"false"}>Not Currently In Store</option>
+     </select>
+    </div>
+    <div className="sortby-section">
+     <label className="sortby-label" htmlFor="tag">
+      Tag:
+     </label>
+     <select
+      className="item-sort"
+      id="tag"
+      onChange={(e) => {
+       setFilterBy(e.target.value);
+      }}
+     >
+      <option>All</option>
+      {tags.map((tag) => {
+       return <option>{tag}</option>;
+      })}
+     </select>
+    </div>
+    <div className="button-container">
+     <button className="item-sort-submit" type="submit">
+      Submit
+     </button>
+    </div>
    </form>
-  </>
+  </div>
  );
 };
