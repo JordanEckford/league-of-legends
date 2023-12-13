@@ -5,6 +5,7 @@ export const ItemSortby = ({ setItems }) => {
  const [inStore, setInStore] = useState("All");
  const [filterBy, setFilterBy] = useState("All");
  const [showOptions, setShowOptions] = useState(false);
+ const [sortBy, setSortBy] = useState("Default");
 
  let tags = [
   "Boots",
@@ -63,7 +64,19 @@ export const ItemSortby = ({ setItems }) => {
      }
     }
    }
-   setItems(sortedItems);
+   if (sortBy === "Default") {
+    setItems(sortedItems);
+   } else if (sortBy === "Ascending") {
+    let ascending = sortedItems.sort((a, b) => {
+     return a.gold.base - b.gold.base;
+    });
+    setItems(ascending);
+   } else if (sortBy === "Descending") {
+    let ascending = sortedItems.sort((a, b) => {
+     return b.gold.base - a.gold.base;
+    });
+    setItems(ascending);
+   }
   });
  };
 
@@ -120,6 +133,22 @@ export const ItemSortby = ({ setItems }) => {
       {tags.map((tag) => {
        return <option>{tag}</option>;
       })}
+     </select>
+    </div>
+    <div className="sortby-section">
+     <label htmlFor="sort" className="sortby-label">
+      Sort by cost:
+     </label>
+     <select
+      className="item-sort"
+      id="sort"
+      onChange={(e) => {
+       setSortBy(e.target.value);
+      }}
+     >
+      <option>Default</option>
+      <option>Ascending</option>
+      <option>Descending</option>
      </select>
     </div>
     <div className="button-container">
